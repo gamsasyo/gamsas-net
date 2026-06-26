@@ -95,6 +95,16 @@
   footer{padding:30px 0;border-top:1px solid var(--line);margin-top:10px;
     display:flex;flex-wrap:wrap;gap:14px;align-items:center;
     justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--dim)}
+
+  .copymail{cursor:pointer}
+  .toast{position:fixed;left:50%;bottom:26px;
+    transform:translateX(-50%) translateY(10px);
+    font-family:var(--pixel-sm);font-size:11px;letter-spacing:.04em;
+    background:var(--panel);border:1px solid var(--line);color:var(--accent);
+    padding:11px 16px;border-radius:8px;opacity:0;pointer-events:none;
+    transition:opacity .2s ease,transform .2s ease;z-index:50;white-space:nowrap;
+    box-shadow:0 8px 24px rgba(0,0,0,.5)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
@@ -152,7 +162,7 @@
     <div class="label">// get it</div>
     <div class="cta">
       <span class="badge">app store · soon</span>
-      <span style="color:var(--dim);font-size:14px">feedback? <a href="mailto:hello@gamsas.net">hello@gamsas.net</a></span>
+      <span style="color:var(--dim);font-size:14px">feedback? <a href="mailto:hello@gamsas.net" class="copymail" data-email="hello@gamsas.net">hello@gamsas.net</a></span>
     </div>
   </section>
 
@@ -162,5 +172,21 @@
   </footer>
 
 </div>
+
+<div class="toast" id="toast">[COPIED] hello@gamsas.net</div>
+<script>
+(function(){
+  var toast=document.getElementById('toast'), t;
+  function ping(){toast.classList.add('show');clearTimeout(t);t=setTimeout(function(){toast.classList.remove('show');},1800);}
+  document.querySelectorAll('.copymail').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var em=a.getAttribute('data-email');
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(em).then(ping,ping);}
+      else{var x=document.createElement('textarea');x.value=em;document.body.appendChild(x);x.select();try{document.execCommand('copy');}catch(_){}document.body.removeChild(x);ping();}
+    });
+  });
+})();
+</script>
 </body>
 </html>
