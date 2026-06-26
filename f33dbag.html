@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>F33DBAG — gamsas</title>
+<meta name="description" content="F33DBAG — a falcon-cockpit camera with looks built by hand. by gamsas." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0b0d; --panel:#101216; --line:#1d2026;
+    --ink:#e7e8ea; --dim:#8b9099; --accent:#c9ff5b; --accent2:#5bd1ff;
+    --pixel:"Press Start 2P","Silkscreen",monospace;
+    --pixel-sm:"Silkscreen","SF Mono",monospace;
+    --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;line-height:1.5}
+  body{min-height:100vh;background-image:radial-gradient(circle at 50% -10%,#15171c 0%,#0a0b0d 60%)}
+  .wrap{width:100%;max-width:880px;margin:0 auto;padding:0 24px 80px}
+  .mono{font-family:var(--mono)}
+  a{color:var(--accent2);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  header{display:flex;align-items:center;justify-content:space-between;
+    padding:26px 0;border-bottom:1px solid var(--line)}
+  .back{font-family:var(--pixel-sm);font-size:11px;color:var(--dim);letter-spacing:.04em}
+  .back:hover{color:var(--ink);text-decoration:none}
+  .logo{font-family:var(--pixel);font-size:11px;letter-spacing:.01em}
+
+  /* hero */
+  .hero{padding:64px 0 40px}
+  .glyph{display:inline-block;font-family:var(--pixel-sm);font-size:11px;
+    color:var(--bg);background:var(--accent);padding:8px 10px;border-radius:7px;
+    letter-spacing:.02em;margin-bottom:24px}
+  .hero h1{font-family:var(--pixel);font-size:clamp(26px,7vw,52px);line-height:1.18}
+  .hero .tagline{margin-top:20px;font-size:clamp(17px,4.5vw,22px);color:var(--ink)}
+  .hero .sub{margin-top:14px;font-size:16px;color:var(--dim);max-width:54ch}
+
+  /* screenshot strip */
+  .shots{display:flex;gap:16px;overflow-x:auto;padding:30px 0 14px;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .shots::-webkit-scrollbar{height:6px}
+  .shots::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+  .phone{flex:0 0 auto;width:188px;scroll-snap-align:start}
+  .frame{width:188px;height:392px;border-radius:26px;background:#000;
+    border:2px solid #23262c;padding:7px;
+    box-shadow:0 12px 40px rgba(0,0,0,.5)}
+  .screen{width:100%;height:100%;border-radius:19px;overflow:hidden;
+    position:relative;display:flex;align-items:center;justify-content:center}
+  img.screen{display:block;object-fit:cover}
+  .screen .name{font-family:var(--pixel);font-size:15px;color:#0a0b0d;
+    mix-blend-mode:overlay;letter-spacing:.02em}
+  .screen .ph{position:absolute;bottom:12px;left:0;right:0;text-align:center;
+    font-family:var(--pixel-sm);font-size:8px;color:rgba(255,255,255,.55);
+    letter-spacing:.08em}
+  .phone .cap{margin-top:11px;text-align:center;font-family:var(--pixel-sm);
+    font-size:9px;color:var(--dim);letter-spacing:.06em}
+  /* per-look tints (placeholder until real screenshots) */
+  .s-raw  {background:linear-gradient(160deg,#e8e2d0,#9a917c)}
+  .s-crt  {background:linear-gradient(160deg,#0a1f12,#7dffb0)}
+  .s-ascii{background:linear-gradient(160deg,#2a1a00,#ffb347)}
+  .s-vox  {background:linear-gradient(160deg,#1a0016,#ff5bd1)}
+  .s-blok {background:linear-gradient(160deg,#1a0000,#ff5b5b)}
+  .s-pixel{background:linear-gradient(160deg,#0d0a1f,#9b8cff)}
+
+  section{padding:34px 0;border-top:1px solid var(--line)}
+  .label{font-family:var(--pixel-sm);font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--dim);margin-bottom:18px}
+  .body p{color:var(--dim);font-size:15.5px;max-width:60ch;margin-bottom:14px}
+  .body p b{color:var(--ink);font-weight:600}
+
+  /* looks list */
+  .looks{display:grid;gap:10px}
+  .look{display:flex;align-items:baseline;gap:14px;padding:13px 16px;
+    background:var(--panel);border:1px solid var(--line);border-radius:10px}
+  .look .n{font-family:var(--pixel-sm);font-size:12px;color:var(--ink);
+    min-width:74px;letter-spacing:.02em}
+  .look .t{font-size:14px;color:var(--dim)}
+
+  /* rules */
+  .rules{display:flex;flex-wrap:wrap;gap:8px}
+  .rule{font-family:var(--mono);font-size:12px;color:var(--accent);
+    border:1px solid var(--line);padding:7px 12px;border-radius:20px}
+
+  /* cta */
+  .cta{margin-top:6px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .badge{font-family:var(--pixel-sm);font-size:11px;color:var(--dim);
+    border:1px dashed var(--line);padding:14px 20px;border-radius:10px;letter-spacing:.05em}
+
+  footer{padding:30px 0;border-top:1px solid var(--line);margin-top:10px;
+    display:flex;flex-wrap:wrap;gap:14px;align-items:center;
+    justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="back" href="index.html">← gamsas</a>
+    <div class="logo">gamsas</div>
+  </header>
+
+  <div class="hero">
+    <span class="glyph">F33DBAG</span>
+    <h1>F33DBAG</h1>
+    <div class="tagline">point it at the world.</div>
+    <p class="sub">a falcon-cockpit camera with looks built by hand. shoot photo and video through metal shaders — what you see is what bakes in. no ads, no tracking, no subscription.</p>
+  </div>
+
+  <div class="shots">
+    <div class="phone"><div class="frame"><img class="screen" src="shots/crt.png" alt="CRT filter"></div><div class="cap">CRT</div></div>
+    <div class="phone"><div class="frame"><img class="screen" src="shots/pixel.png" alt="PIXEL filter"></div><div class="cap">P1XEL</div></div>
+    <div class="phone"><div class="frame"><img class="screen" src="shots/check.png" alt="CH3CK3R filter"></div><div class="cap">CH3CK3R</div></div>
+    <div class="phone"><div class="frame"><img class="screen" src="shots/library.png" alt="filter library"></div><div class="cap">LIBRARY</div></div>
+    <div class="phone"><div class="frame"><img class="screen" src="shots/gallery.png" alt="gallery edit"></div><div class="cap">GALLERY · EDIT</div></div>
+  </div>
+
+  <section class="body">
+    <div class="label">// what it is</div>
+    <p>F33DBAG turns your phone into an instrument panel. pick a look, ride the faders, shoot. the filter is baked into the photo and the video — <b>what you see is what you get</b>, no surprise export.</p>
+    <p>every look is a hand-written metal shader. the science is borrowed from apple — vision, core ml, the camera stack — the art is written by hand.</p>
+  </section>
+
+  <section>
+    <div class="label">// a few of the looks</div>
+    <div class="looks">
+      <div class="look"><span class="n">RAW</span><span class="t">the clean one — exposure, contrast, warmth</span></div>
+      <div class="look"><span class="n">CRT</span><span class="t">sunday morning tv — curve, scanline, bloom</span></div>
+      <div class="look"><span class="n">ASCII</span><span class="t">say it in characters — speech becomes the cells</span></div>
+      <div class="look"><span class="n">V0X</span><span class="t">capture the eye — voxel raymarch on a single eye</span></div>
+      <div class="look"><span class="n">BL0K</span><span class="t">redact the crowd — on-device person blur, vintage film</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">// the rules</div>
+    <div class="rules">
+      <span class="rule">no ads</span>
+      <span class="rule">no tracking</span>
+      <span class="rule">no subscription</span>
+      <span class="rule">on-device</span>
+      <span class="rule">wysiwyg</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">// get it</div>
+    <div class="cta">
+      <span class="badge">app store · soon</span>
+      <span style="color:var(--dim);font-size:14px">feedback? <a href="mailto:hello@gamsas.net">hello@gamsas.net</a></span>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 gamsas · 신재영 (Shin Jaeyoung)</div>
+    <div><a href="index.html">gamsas</a></div>
+  </footer>
+
+</div>
+</body>
+</html>
