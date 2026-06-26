@@ -38,27 +38,61 @@
   .logo b{color:var(--accent)}
   .stamp{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.04em}
 
-  /* mask hero */
-  .hero{padding:56px 0 0;display:flex;flex-direction:column;align-items:center;gap:0}
+  /* hero */
+  .hero{padding:48px 0 0;display:flex;flex-direction:column;align-items:center;gap:0}
 
-  .bolt-wrap{
-    display:inline-flex;align-items:center;justify-content:center;
+  /* knight canvas */
+  .knight-wrap{
+    width:100%;display:flex;align-items:center;justify-content:center;
   }
-  #bolt{image-rendering:pixelated;image-rendering:crisp-edges;
-    filter:drop-shadow(0 0 18px rgba(245,210,20,0.55))}
+  #knight{
+    max-width:100%;height:auto;
+    image-rendering:pixelated;image-rendering:crisp-edges;
+    background:transparent;
+    animation:knightFloat 2.6s ease-in-out infinite,
+               knightGlow  2.6s ease-in-out infinite;
+  }
+  @keyframes knightFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-7px)}
+  }
+  @keyframes knightGlow{
+    0%,100%{filter:drop-shadow(0 0 14px rgba(196,144,32,.48))
+                   drop-shadow(0 0 5px  rgba(255,180,60,.22))}
+    50%    {filter:drop-shadow(0 0 28px rgba(196,144,32,.9))
+                   drop-shadow(0 0 12px rgba(255,180,60,.5))}
+  }
 
-  .mask-label{
-    font-family:var(--pixel-sm);font-size:9px;letter-spacing:.14em;
-    color:var(--gold);opacity:.7;margin-top:14px;text-align:center}
+  /* stacked hero name */
+  .hero-name{
+    margin-top:22px;
+    display:flex;flex-direction:column;align-items:center;gap:0;
+  }
+  .hero-name span{
+    font-family:var(--pixel);
+    font-size:clamp(18px,5vw,34px);
+    letter-spacing:.22em;
+    color:var(--gold);
+    line-height:1.55;
+    opacity:0;
+    animation:heroLineIn .35s ease forwards;
+  }
+  .hero-name span:nth-child(1){animation-delay:.15s}
+  .hero-name span:nth-child(2){animation-delay:.38s}
+  .hero-name span:nth-child(3){animation-delay:.61s}
+  @keyframes heroLineIn{
+    from{opacity:0;transform:translateY(5px)}
+    to  {opacity:1;transform:translateY(0)}
+  }
 
   .tagline{
-    margin-top:30px;
-    font-family:var(--pixel);font-size:clamp(13px,3.5vw,18px);
+    margin-top:28px;
+    font-family:var(--pixel);font-size:clamp(11px,2.8vw,15px);
     letter-spacing:-.01em;line-height:1.6;text-align:center;
     color:var(--ink)}
 
   .sub{
-    margin-top:14px;
+    margin-top:12px;
     font-family:var(--mono);font-size:12px;color:var(--dim);
     text-align:center;letter-spacing:.04em}
 
@@ -84,7 +118,6 @@
     justify-content:space-between;font-family:var(--mono);font-size:12px;
     color:var(--dim)}
 
-  /* toast */
   .copymail{cursor:pointer;color:var(--accent2);text-decoration:none}
   .copymail:hover{text-decoration:underline}
   .toast{position:fixed;left:50%;bottom:26px;
@@ -106,10 +139,14 @@
   </header>
 
   <div class="hero">
-    <div class="bolt-wrap">
-      <canvas id="bolt"></canvas>
+    <div class="knight-wrap">
+      <canvas id="knight"></canvas>
     </div>
-    <div class="mask-label">AGA · MEM · NON</div>
+    <div class="hero-name">
+      <span>AGA</span>
+      <span>MEM</span>
+      <span>NON</span>
+    </div>
     <div class="tagline">small strange tools.</div>
     <div class="sub">camera tools + more &nbsp;·&nbsp; seoul &nbsp;·&nbsp; est. 2026</div>
   </div>
@@ -144,42 +181,63 @@
 <div class="toast" id="toast">[COPIED] hello@gamsas.net</div>
 
 <script>
-// Agamemnon bolt ⚡ — pixel art, classic Z-shape
-const ROWS=[
-  "            oWWYYYo",
-  "           oWWYYYo ",
-  "          oWWYYYo  ",
-  "         oWWYYYo   ",
-  "        oWWYYYo    ",
-  "       oWWYYYo     ",
-  "      oWWYYYo      ",
-  "            oWWYYYo",
-  "           oWWYYYo ",
-  "          oWWYYYo  ",
-  "         oWWYYYo   ",
-  "        oWWYYYo    ",
-  "       oWWYYYo     ",
-  "      oWWYYYo      ",
-  "     oWWYYYo       ",
-  "    oWWYYYo        ",
-  "   oWWYYo          ",
-  "  oWWYo            ",
-  " oWYo              ",
-  "oWo                ",
-  "oo                 ",
-];
-const PAL={o:"#2a1500",W:"#fffde0",Y:"#f5d200"," ":null};
-const BW=Math.max(...ROWS.map(r=>r.length));
-const CELL=16;
-const c=document.getElementById("bolt");
-c.width=BW*CELL;c.height=ROWS.length*CELL;
-const ctx=c.getContext("2d");
-ROWS.forEach((row,ry)=>{
-  for(let cx=0;cx<BW;cx++){
-    const ch=row[cx]||" ";const col=PAL[ch];
-    if(col){ctx.fillStyle=col;ctx.fillRect(cx*CELL,ry*CELL,CELL,CELL);}
+// AGAMEMNON — WC3 Chaos hero knight, pixel art
+// Blue/gold plate armor · golden horsehair plume · flowing cape
+// closed visor · heater shield · long spear
+(function(){
+  var PAL = {
+    'o':'#1a1200','B':'#1a3a8a','b':'#2d4faa','C':'#0e2060',
+    'G':'#c49020','g':'#f0c040','P':'#d96010','p':'#ffb040',
+    'k':'#02040a','W':'#e8f0ff','N':'#9c8850',' ':null
+  };
+
+  var ROWS = [
+    "            opp          oWo ",  //  0  plume tip + spear tip
+    "           oPPPo        oWWo ",  //  1  plume + blade
+    "          oPPPPPo       oggo ",  //  2  plume wide + bright gold blade
+    "          oPPPPPo       oGGo ",  //  3  plume + blade
+    "          oPPPPPo        oGo ",  //  4  plume + spear socket
+    "         ooPPPPoo        oNo ",  //  5  plume base + shaft
+    "         oBBBBBBBBo      oNo ",  //  6  helm top (8-wide)
+    "        oBBBBBBBBBBo     oNo ",  //  7  helm body (10-wide)
+    "        oBBBBBBBBBBo     oNo ",  //  8  helm body
+    "        oGgGGGGGGgGo     oNo ",  //  9  gold face plate (wide)
+    "        oGGkkkkkkkGo     oNo ",  // 10  CLOSED VISOR — dark slit
+    "        oGGGGGGGGGGo     oNo ",  // 11  gorget (chin guard)
+    " oBo oBo oGBBBBBBBBBBGBBBoNo ",  // 12  shield·cape·WIDE PAULDRONS·arm grips shaft
+    " oBBo oBo oBBBBBBBBBBBBBBoBo ",  // 13  shield·cape·massive chest·arm
+    " oGBo oGo oBBgBBBBBBgBBBBoBo ",  // 14  shield gold·chest rivets·arm
+    " oGGo     oBBBBBBBBBBBBo oNo ",  // 15  shield base·torso·shaft
+    " oCCo     oBBBBBBBBBBBBo oNo ",  // 16  cape·torso
+    " oCCo     oGGGGGGGGGGGGo oNo ",  // 17  cape·wide gold belt
+    " oCCo     oBBBBBBBBBBBBo oNo ",  // 18  cape·hips
+    " oCCo     oBBBBBo oBBBBBo oNo",  // 19  cape·thick legs (5-wide each)
+    " oCCo     oBBBBBo oBBBBBo oNo",  // 20  cape·legs
+    "  oCo     oGGGGGo oGGGGGo oNo",  // 21  cape·gold knee guards
+    "  oCo     oBBBBBo oBBBBBo oNo",  // 22  cape·armored shins
+    "  oCo     oBBBBBo oBBBBBo oNo",  // 23  cape·shins
+    "         oBBBBBBo oBBBBBBo oGo",  // 24  wide boots + gold spear butt
+    "         oBBBBBBo oBBBBBBo oo ",  // 25  boots
+    "         oooooooo oooooooo    ",  // 26  ground
+  ];
+
+  var W = 0;
+  for(var i=0;i<ROWS.length;i++) W = Math.max(W, ROWS[i].length);
+  var CELL = 12;
+  var cv = document.getElementById('knight');
+  cv.width  = W * CELL;
+  cv.height = ROWS.length * CELL;
+  var ctx = cv.getContext('2d');
+
+  for(var ry=0;ry<ROWS.length;ry++){
+    var row = ROWS[ry];
+    for(var cx=0;cx<W;cx++){
+      var ch = row[cx] || ' ';
+      var col = PAL[ch];
+      if(col){ ctx.fillStyle=col; ctx.fillRect(cx*CELL, ry*CELL, CELL, CELL); }
+    }
   }
-});
+})();
 </script>
 
 <script>
