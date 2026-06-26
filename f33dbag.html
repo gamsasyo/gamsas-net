@@ -41,6 +41,16 @@
   .hero .tagline{margin-top:20px;font-size:clamp(17px,4.5vw,22px);color:var(--ink)}
   .hero .sub{margin-top:14px;font-size:16px;color:var(--dim);max-width:54ch}
 
+  @media(max-width:640px){
+    .hero{padding:40px 0 24px}
+    .hero h1{font-size:clamp(28px,9vw,44px)}
+    .glyph{margin-bottom:16px}
+    section{padding:26px 0}
+    .shots{padding:18px 0 10px}
+    .body p{font-size:15px}
+    .look{padding:11px 14px}
+  }
+
   /* screenshot strip */
   .shots{display:flex;gap:16px;overflow-x:auto;padding:30px 0 14px;
     scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
@@ -116,10 +126,10 @@
   </header>
 
   <div class="hero">
-    <span class="glyph">F33DBAG</span>
+    <span class="glyph">FREE · iPHONE</span>
     <h1>F33DBAG</h1>
     <div class="tagline">point it at the world.</div>
-    <p class="sub">a falcon-cockpit camera with looks built by hand. shoot photo and video through metal shaders — what you see is what bakes in. no ads, no tracking, no subscription.</p>
+    <p class="sub">a falcon-cockpit camera. looks hand-written in metal shaders — what you see bakes in.</p>
   </div>
 
   <div class="shots">
