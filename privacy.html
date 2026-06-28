@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>privacy — gamsas</title>
+<meta name="description" content="privacy policy for gamsas and its apps. nothing is tracked, nothing leaves your device." />
+<meta name="robots" content="index,follow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0b0d; --panel:#101216; --line:#1d2026;
+    --ink:#e7e8ea; --dim:#8b9099; --accent:#c9ff5b; --accent2:#5bd1ff;
+    --pixel:"Press Start 2P","Silkscreen",monospace;
+    --pixel-sm:"Silkscreen","SF Mono",monospace;
+    --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;line-height:1.6}
+  body{min-height:100vh;background-image:radial-gradient(circle at 50% -10%,#15171c 0%,#0a0b0d 60%)}
+  .wrap{width:100%;max-width:720px;margin:0 auto;padding:0 24px 80px}
+  a{color:var(--accent2);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  header{display:flex;align-items:center;justify-content:space-between;
+    padding:26px 0;border-bottom:1px solid var(--line)}
+  .back{font-family:var(--pixel-sm);font-size:11px;color:var(--dim);letter-spacing:.04em}
+  .back:hover{color:var(--ink);text-decoration:none}
+  .logo{font-family:var(--pixel);font-size:11px;letter-spacing:.01em}
+  .logo b{color:var(--accent)}
+
+  .hero{padding:56px 0 18px}
+  .hero h1{font-family:var(--pixel);font-size:clamp(22px,5.5vw,34px);line-height:1.25}
+  .hero .upd{margin-top:18px;font-family:var(--mono);font-size:12px;color:var(--dim)}
+
+  section{padding:30px 0;border-top:1px solid var(--line)}
+  h2{font-family:var(--pixel-sm);font-size:13px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  p{color:var(--dim);font-size:15px;margin-bottom:13px;max-width:62ch}
+  p b{color:var(--ink);font-weight:600}
+  ul{list-style:none;margin:4px 0 13px;padding:0;max-width:62ch}
+  li{color:var(--dim);font-size:15px;margin-bottom:9px;padding-left:20px;position:relative}
+  li::before{content:"—";position:absolute;left:0;color:var(--accent)}
+
+  footer{padding:32px 0 44px;border-top:1px solid var(--line);margin-top:10px}
+  .bizname{font-family:var(--pixel-sm);font-size:12px;color:var(--ink);
+    letter-spacing:.06em;margin-bottom:15px}
+  .bizgrid{display:grid;grid-template-columns:max-content 1fr;
+    column-gap:30px;row-gap:4px;font-family:var(--mono);font-size:12px;
+    line-height:1.45;max-width:600px;margin:0}
+  .bizgrid dt{color:var(--dim)}
+  .bizgrid dd{color:#c4c9d0;margin:0}
+  .bizgrid dd a{color:var(--accent2);text-decoration:none}
+  .bizgrid dd a:hover{text-decoration:underline}
+  .bizbar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;
+    justify-content:space-between;margin-top:22px;padding-top:15px;
+    border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--dim)}
+  .bizbar a{color:var(--accent2);text-decoration:none}
+  .bizbar a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="back" href="index.html">← back</a>
+    <div class="logo">gamsas<b>.</b></div>
+  </header>
+
+  <div class="hero">
+    <h1>privacy policy</h1>
+    <div class="upd">last updated — 28 june 2026</div>
+  </div>
+
+  <section>
+    <p><b>gamsas</b> does not collect, store, sell, or share your personal data. our apps — including <b>F33DBAG</b> — run entirely on your device. your photos and video stay on your phone; we have no servers that receive them, no accounts, no ads, and no third-party tracking or analytics.</p>
+    <p>this website sets no tracking cookies. if you email us, we use your message only to reply.</p>
+    <p>questions? email <a href="mailto:hello@gamsas.net">hello@gamsas.net</a>.</p>
+  </section>
+
+  <footer>
+    <div class="bizname">GAMSAS</div>
+    <dl class="bizgrid">
+      <dt>sole proprietor</dt><dd>Jaeyoung Shin</dd>
+      <dt>business reg.</dt><dd>160-50-00888</dd>
+      <dt>address</dt><dd>320 Sangdo-ro, Dongjak-gu, Seoul, Republic of Korea</dd>
+      <dt>contact</dt><dd><a href="mailto:hello@gamsas.net">hello@gamsas.net</a></dd>
+    </dl>
+    <div class="bizbar">
+      <span>© 2026 gamsas™ · registered in seoul since 2024</span>
+      <a href="index.html">home</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
