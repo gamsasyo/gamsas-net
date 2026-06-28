@@ -92,15 +92,12 @@
     min-width:74px;letter-spacing:.02em}
   .look .t{font-size:14px;color:var(--dim)}
 
-  /* rules */
-  .rules{display:flex;flex-wrap:wrap;gap:8px}
-  .rule{font-family:var(--mono);font-size:12px;color:var(--accent);
-    border:1px solid var(--line);padding:7px 12px;border-radius:20px}
-
   /* cta */
   .cta{margin-top:6px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-  .badge{font-family:var(--pixel-sm);font-size:11px;color:var(--dim);
-    border:1px dashed var(--line);padding:14px 20px;border-radius:10px;letter-spacing:.05em}
+  .badge{font-family:var(--pixel-sm);font-size:11px;color:var(--accent);
+    border:1px solid var(--accent);padding:13px 19px;border-radius:10px;
+    letter-spacing:.05em;display:inline-block;text-decoration:none}
+  .badge:hover{background:var(--accent);color:var(--bg);text-decoration:none}
 
   footer{padding:32px 0 44px;border-top:1px solid var(--line);margin-top:10px}
   .bizname{font-family:var(--pixel-sm);font-size:12px;color:var(--ink);
@@ -142,6 +139,10 @@
     <h1>F33DBAG</h1>
     <div class="tagline">point it at the world.</div>
     <p class="sub">a small camera with a cockpit full of looks — every one hand-written in metal. what you see is what bakes in, no surprise export.</p>
+    <div class="cta" style="margin-top:26px">
+      <a class="badge" href="https://testflight.apple.com/join/6UgrVZzM" target="_blank" rel="noopener">join the beta →</a>
+      <span class="mono" style="font-size:13px;color:var(--dim)">on iOS · free to join.</span>
+    </div>
   </div>
 
   <div class="shots">
@@ -170,20 +171,9 @@
   </section>
 
   <section>
-    <div class="label">// the rules</div>
-    <div class="rules">
-      <span class="rule">no ads</span>
-      <span class="rule">no tracking</span>
-      <span class="rule">no subscription</span>
-      <span class="rule">on-device</span>
-      <span class="rule">wysiwyg</span>
-    </div>
-  </section>
-
-  <section>
     <div class="label">// get it</div>
     <div class="cta">
-      <span class="badge">iOS · TestFlight beta</span>
+      <a class="badge" href="https://testflight.apple.com/join/6UgrVZzM" target="_blank" rel="noopener">iOS · TestFlight beta</a>
       <span class="mono" style="font-size:13px;color:var(--dim)">in testing now — wider app store release next.</span>
     </div>
   </section>
