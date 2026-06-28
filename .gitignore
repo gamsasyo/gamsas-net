@@ -1,3 +1,9 @@
 .wrangler/
 .DS_Store
 node_modules/
+
+# working files — never ship to the web
+*.psd
+shots/IMG_*
+pighead.webp
+.playwright-mcp/

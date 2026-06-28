@@ -4,8 +4,17 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="format-detection" content="telephone=no" />
-<title>F33DBAG — gamsas</title>
-<meta name="description" content="F33DBAG — a small camera with a cockpit full of hand-written looks. by gamsas." />
+<title>F33DBAG</title>
+<meta name="description" content="F33DBAG — a camera with a cockpit full of strange looks. point it at the world, and what you see is what you get. by gamsas." />
+<meta property="og:title" content="F33DBAG" />
+<meta property="og:description" content="a camera with a cockpit full of strange looks — crt, ascii, voxel, pixel. what you see is what you get. baked in, no take-backs." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://gamsas.net/f33dbag" />
+<meta property="og:image" content="https://gamsas.net/gamsas.png" />
+<meta property="og:image:width" content="1280" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://gamsas.net/gamsas.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
@@ -71,6 +80,7 @@
     letter-spacing:.08em}
   .phone .cap{margin-top:11px;text-align:center;font-family:var(--pixel-sm);
     font-size:9px;color:var(--dim);letter-spacing:.06em}
+  .shots .divider{flex:0 0 1px;align-self:stretch;background:var(--line);margin:0 8px}
   /* per-look tints (placeholder until real screenshots) */
   .s-raw  {background:linear-gradient(160deg,#e8e2d0,#9a917c)}
   .s-crt  {background:linear-gradient(160deg,#0a1f12,#7dffb0)}
@@ -147,11 +157,14 @@
   </div>
 
   <div class="shots">
+    <div class="phone"><div class="frame"><img class="screen" src="shots/pstr.png" alt="POSTR filter"></div><div class="cap">POSTR</div></div>
+    <div class="phone"><div class="frame"><img class="screen" src="shots/vox.png" alt="V0X filter"></div><div class="cap">V0X</div></div>
     <div class="phone"><div class="frame"><img class="screen" src="shots/crt.png" alt="CRT filter"></div><div class="cap">CRT</div></div>
-    <div class="phone"><div class="frame"><img class="screen" src="shots/pixel.png" alt="PIXEL filter"></div><div class="cap">P1XEL</div></div>
-    <div class="phone"><div class="frame"><img class="screen" src="shots/check.png" alt="CH3CK3R filter"></div><div class="cap">CH3CK3R</div></div>
-    <div class="phone"><div class="frame"><img class="screen" src="shots/library.png" alt="filter library"></div><div class="cap">LIBRARY</div></div>
-    <div class="phone"><div class="frame"><img class="screen" src="shots/gallery.png" alt="gallery edit"></div><div class="cap">GALLERY · EDIT</div></div>
+    <div class="phone"><div class="frame"><img class="screen" src="shots/ember.png" alt="EMBER filter"></div><div class="cap">EMBER</div></div>
+    <div class="divider" aria-hidden="true"></div>
+    <div class="phone"><div class="frame"><img class="screen" src="shots/library.png" alt="filter library"></div><div class="cap">browse looks</div></div>
+    <div class="phone"><div class="frame"><img class="screen" src="shots/gallery.png" alt="your shots"></div><div class="cap">your gallery</div></div>
+    <div class="phone"><div class="frame"><img class="screen" src="shots/edit.png" alt="edit screen"></div><div class="cap">edit after</div></div>
   </div>
 
   <section class="body">
@@ -164,10 +177,10 @@
     <div class="label">// a few of the looks</div>
     <div class="looks">
       <div class="look"><span class="n">RAW</span><span class="t">the clean one — exposure, contrast, warmth</span></div>
-      <div class="look"><span class="n">CRT</span><span class="t">sunday morning tv — curve, scanline, bloom</span></div>
-      <div class="look"><span class="n">ASCII</span><span class="t">say it in characters — speech becomes the cells</span></div>
-      <div class="look"><span class="n">V0X</span><span class="t">capture the eye — voxel raymarch on a single eye</span></div>
-      <div class="look"><span class="n">BL0K</span><span class="t">redact the crowd — on-device person blur, vintage film</span></div>
+      <div class="look"><span class="n">POSTR</span><span class="t">strip it to ink — cell, step, invert</span></div>
+      <div class="look"><span class="n">CRT</span><span class="t">old tube tv — resolution, scanline, glow</span></div>
+      <div class="look"><span class="n">V0X</span><span class="t">lock onto one eye — voxel raymarch, zoom + dolly</span></div>
+      <div class="look"><span class="n">EMBER</span><span class="t">soak it in one color — color, level, bloom</span></div>
     </div>
   </section>
 
